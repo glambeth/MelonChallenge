@@ -68,6 +68,7 @@ contract DutchAuction {
 		returns (uint currentTokenprice)
 	{
 		if (block.number > endBlock) { return .5 ether; }
+		if (block.number == startBlock) { return 2 ether; }
 		return 2 ether - 1/((100000)*(block.number - startBlock));
 	}
 
