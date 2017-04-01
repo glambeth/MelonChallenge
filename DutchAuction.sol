@@ -1,6 +1,7 @@
 pragma solidity ^0.4.8;
 
-
+import "./SafeMath.sol"
+import "./SampleToken.sol"
 
 contract DutchAuction {
 	
@@ -14,13 +15,14 @@ contract DutchAuction {
 	uint public startBlock; //contribution start block
 	uint public endBlock; //last block one in which one can contribute to coin offering
 	address public melonport;
+	SampleToken public sampleToken;
 
 	// Fields modifiable by functions
 
 	uint public etherRaised = 0; //total amount of Ether raised during the coin offering
 	uint public finalPrice; //the price everyone ends up paying per MLN
 	bool crowdsaleRunning = true; //false once the crowdsale is completed
-	mapping (address => uint) public bidsSubmitted; //maping of bidders address => amount of bi
+	mapping (address => uint) public bidsSubmitted; //maping of bidders address => amount of bid
 
 	// EVENTS
 
@@ -88,7 +90,7 @@ contract DutchAuction {
 	{
 		uint tokensClaimed = bidsSubmitted[msg.sender] / finalPrice;
 		bidsSubmitted[msg.sender] = 0;
-		//transfer token logic to bidder here
+		sampleToken.transfer(msg.sender, tokensClaimed);
 	}
 
 	//CONSTRUCTOR
