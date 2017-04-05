@@ -46,6 +46,7 @@ contract ProRataAllocation {
 	// FUNCTIONS 
 
 	function commitEth() 
+		payable
 		auctionInProgress
 	{
 		bidsSubmitted[msg.sender] += msg.value;
