@@ -61,7 +61,7 @@ contract ProRataAllocation {
 		if (etherCommited <= ETHER_CAP) {
 			tokensClaimed = bidsSubmitted[msg.sender] / PRICE_PER_MELON;
 		} else {
-			tokensClaimed = calcualteProRataAlloc(bidsSubmitted[msg.sender]);	
+			tokensClaimed = calcualteProRataAlloc(bidsSubmitted[msg.sender]) / PRICE_PER_MELON;	
 		}
 		bidsSubmitted[msg.sender] = 0;
 		SampleToken.transfer(msg.sender, tokensClaimed);
